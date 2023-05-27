@@ -28,6 +28,9 @@ function getConnection(callback) {
       }
     });
   }
+app.get('/', (req,res) =>{
+    res.send("Hello, welcome to the API")
+});
   app.get('/api/books', (req, res) => {
     const query = 'SELECT * FROM `Books`';
   
