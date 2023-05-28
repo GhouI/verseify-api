@@ -158,8 +158,20 @@ app.get('/', async (req,res) =>{
     });
   })
   app.post('/api/UploadChapterByBookId',  (req, res) =>{
-    res.setHeader('Content-Type', 'application/json');
     res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
+
+//---- other code
+
+ //Preflight CORS handler
+    if(req.method === 'OPTIONS') {
+        return res.status(200).json(({
+            body: "OK"
+        }))
+    }
+
     const {book_id, chapter_title, chapter_language, chapter_content, chapter_group} = req.body;
     const query = `
     INSERT INTO Chapters (book_id, chapter_title, chapter_language, chapter_content, chapter_group) VALUES (${book_id}, '${chapter_title}', '${chapter_language}', '${chapter_content}', '${chapter_group}');
