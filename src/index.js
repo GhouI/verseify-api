@@ -20,7 +20,7 @@ app.listen(port, async () => {
     fetch(process.env.Discord,{
       method: 'POST',
       headers: {
-        'content-type': 'application/json'
+        'Content-type': 'application/json'
       },
       body: JSON.stringify({
         content: `Server is running on port ${port}`
@@ -39,7 +39,7 @@ function getConnection(callback) {
     });
   }
 app.get('/', (req,res) =>{
-    res.send("Hello, Welcome to Verseify API. This is Version 1.02. Sending Errors.")
+    res.send("Hello, Welcome to Verseify API. This is Version 1.03" + process.env.Discord)
 });
   app.get('/api/books', (req, res) => {
     const query = 'SELECT * FROM `Books`';
