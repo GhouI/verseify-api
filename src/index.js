@@ -18,13 +18,6 @@ const pool = mysql.createPool({
 
 app.listen(port, async () => {
     console.log(`Server is running on port ${port}`)
-    try{
-        await axios.post(process.env.discord_url, {
-            "content": "Verseify API is now online!"
-        })
-    }catch (e){
-        console.log(e)
-    }
 })
 // Middleware to acquire a connection from the pool
 function getConnection(callback) {
