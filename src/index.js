@@ -188,6 +188,7 @@ app.get('/', async (req,res) =>{
     });
   })
   app.post('/api/UploadChapterByBookId', async (req, res) =>{
+    res.setHeader('Content-Type', 'application/json')
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.setHeader('Access-Control-Allow-Credentials', true);
