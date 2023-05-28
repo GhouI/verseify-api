@@ -29,7 +29,7 @@ function getConnection(callback) {
     });
   }
 app.get('/', (req,res) =>{
-    res.send("Hello, welcome to the API")
+    res.send("Hello, Welcome to Verseify API. This is Version 1.01 with the latest POST Command of /api/UploadChapterByBookIdAndChapter")
 });
   app.get('/api/books', (req, res) => {
     const query = 'SELECT * FROM `Books`';
@@ -151,5 +151,33 @@ app.get('/', (req,res) =>{
         });
       }
     });
+  })
+  app.post('/api/UploadChapterByBookIdAndChapter', (req, res) =>{
+    const {book_id, chapter_title, chapter_language, chapter_content, chapter_group} = req.body;
+    const query = `
+    INSERT INTO Chapters (book_id, chapter_title, chapter_language, chapter_content, chapter_group) VALUES (${book_id}, '${chapter_title}', '${chapter_language}', '${chapter_content}', '${chapter_group}');
+    `
+    getConnection((err, connection) => {
+        if (err) {
+            res.status(500).json({ error: 'An internal server error occurred' });
+        } else {
+            connection.query(query, (error, results) => {
+            connection.release(); // Release the connection back to the pool
+    
+            if (error) {
+                console.error('Error executing query:', error);
+                res.status(500).json({ error: 'An internal server error occurred!' });
+            } else {
+                if (results.length === 0) {
+                res.status(404).json({ error: 'Could not find that book.' });
+                } else {
+                    res.status(200).json(results);
+                }
+            }
+            });
+        }
+        }
+    );
+
   })
 export default app;
