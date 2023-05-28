@@ -1,8 +1,5 @@
-async function SendError(error){
-    const url = process.env.Discord
-    //field value will have one field with the value of a markdown code block
-    const dynamicContent = "Hello, world!"; // Replace with your desired dynamic value
-
+async function SendError(urlA, error){
+    const url = urlA;
     const data = {
       username: "Verseify API",
       embeds: [
@@ -13,7 +10,7 @@ async function SendError(error){
           fields: [
             {
               name: "API Version",
-              value: "```\n" + `${Error}` + "\n```"
+              value: "```\n" + `${error}` + "\n```"
             }
           ]
         }
