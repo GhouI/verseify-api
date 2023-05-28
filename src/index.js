@@ -129,7 +129,7 @@ app.get('/', async (req,res) =>{
     Chapters.chapter_id,
     Chapters.chapter_title,
     Chapters.chapter_language,
-    Chapters.Group,
+    Chapters.chapter_group,
     Authors.author_name
   FROM 
     Books
