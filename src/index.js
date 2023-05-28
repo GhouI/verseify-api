@@ -1,5 +1,4 @@
 const express = require('express')
-const Error = require('./Error')
 const dotenv = require('dotenv').config();
 const mysql = require('mysql');
 const cors = require('cors');
