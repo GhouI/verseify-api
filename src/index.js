@@ -187,6 +187,11 @@ app.get('/', async (req,res) =>{
     });
   })
   app.post('/api/UploadChapterByBookId', async (req, res) =>{
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
+    
     const {book_id, chapter_title, chapter_language, chapter_content, chapter_group} = req.body;
     const query = `
     INSERT INTO Chapters (book_id, chapter_title, chapter_language, chapter_content, chapter_group) VALUES (${book_id}, '${chapter_title}', '${chapter_language}', '${chapter_content}', '${chapter_group}');
@@ -215,16 +220,5 @@ app.get('/', async (req,res) =>{
     );
 
   })
-app.post('/api/post', async (req,res) =>{
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
 
-  const {chapter_title} = req.body
-  res.json({
-    message: "Hello" + chapter_title
-  })
-
-})
 export default app;
