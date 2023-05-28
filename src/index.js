@@ -20,6 +20,36 @@ app.listen(port, async () => {
     console.log(`Server is running on port ${port}`)
    
 })
+async function sendError(error){
+    const url = process.env.Discord;
+    const data = {
+      username: "Verseify API",
+      embeds: [
+        {
+          title: "Verseify Error",
+          description: "Database issue has occured.",
+          color: 0xFF0000,
+          fields: [
+            {
+              name: "API Version",
+              value: "```\n" + `${error}` + "\n```"
+            }
+          ]
+        }
+      ]
+    };
+    
+    const otherPram = {
+        headers: {
+            "content-type": "application/json; charset=UTF-8"
+        },
+        body: JSON.stringify(data),
+        method: "POST"
+
+    };
+    fetch(url, otherPram)
+
+}
 // Middleware to acquire a connection from the pool
 function getConnection(callback) {
     pool.getConnection((err, connection) => {
@@ -47,7 +77,7 @@ app.get('/', (req,res) =>{
   
           if (error) {
             console.error('Error executing query:', error);
-            res.status(500).json({ error: 'An internal server error occurred' });
+            res.status(500).json({ error: 'An internal server error occurred'});
           } else {
             res.status(200).json(results);
           }
@@ -170,7 +200,8 @@ app.get('/', (req,res) =>{
     
             if (error) {
                 console.error('Error executing query:', error);
-                res.status(500).json({ error: 'An internal server error occurred!' });
+                sendError(error)
+                res.status(500).json({ error: 'An internal server error occurred!', message: error });
             } else {
                 if (results.length === 0) {
                 res.status(404).json({ error: 'Could not find that book.' });
