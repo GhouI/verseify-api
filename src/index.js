@@ -63,14 +63,9 @@ app.listen(port, async () => {
     });
   }
 app.get('/', async (req,res) =>{
-    res.send("Hello, Welcome to Verseify API. This is Version 1.04. Sends discord webhooks error.")
-    Error(process.env.Discord, "Server is running on port " + port)
+    res.send("Hello, Welcome to Verseify API. This is Version 1.05")
 });
   app.get('/api/books', (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
     const query = 'SELECT * FROM `Books`';
   
     getConnection((err, connection) => {
@@ -92,10 +87,6 @@ app.get('/', async (req,res) =>{
   });
   
   app.get('/api/getbook',  (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
     const searchQuery = req.query.search;
   
     const query = `
@@ -132,10 +123,6 @@ app.get('/', async (req,res) =>{
   });
   
   app.get('/api/GetBookByID',  (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
     const searchQuery = req.query.search;
     const query = `SELECT 
     Books.*,
@@ -199,13 +186,7 @@ app.get('/', async (req,res) =>{
       }
     });
   })
-  app.post('/api/UploadChapterByBookId', async (req, res) =>{
-    res.setHeader('Content-Type', 'application/json')
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
-    
+  app.post('/api/UploadChapterByBookId',  (req, res) =>{
     const {book_id, chapter_title, chapter_language, chapter_content, chapter_group} = req.body;
     const query = `
     INSERT INTO Chapters (book_id, chapter_title, chapter_language, chapter_content, chapter_group) VALUES (${book_id}, '${chapter_title}', '${chapter_language}', '${chapter_content}', '${chapter_group}');
