@@ -33,7 +33,7 @@ function getConnection(callback) {
   }
 app.get('/', (req,res) =>{
     res.send("Hello, Welcome to Verseify API. This is Version 1.04. Sends discord webhooks error.")
-    Error("Server is running on port " + port)
+    Error(process.env.Discord, "Server is running on port " + port)
 });
   app.get('/api/books', (req, res) => {
     const query = 'SELECT * FROM `Books`';
