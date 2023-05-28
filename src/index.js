@@ -29,7 +29,7 @@ function getConnection(callback) {
     });
   }
 app.get('/', (req,res) =>{
-    res.send("Hello, Welcome to Verseify API. This is Version 1.01 with the latest POST Command of /api/UploadChapterByBookIdAndChapter")
+    res.send("Hello, Welcome to Verseify API. This is Version 1.01 with the latest POST Command of /api/UploadChapterByBookId")
 });
   app.get('/api/books', (req, res) => {
     const query = 'SELECT * FROM `Books`';
