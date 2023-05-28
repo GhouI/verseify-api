@@ -17,7 +17,7 @@ const pool = mysql.createPool({
 
 app.listen(port, async () => {
     console.log(`Server is running on port ${port}`)
-    fetch(process.env.discord_url,{
+    fetch(process.env.Discord,{
       method: 'POST',
       headers: {
         'content-type': 'application/json'
