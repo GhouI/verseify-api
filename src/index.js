@@ -1,4 +1,5 @@
 const express = require('express')
+const Error = require('./Error')
 const dotenv = require('dotenv').config();
 const mysql = require('mysql');
 const cors = require('cors');
@@ -17,15 +18,7 @@ const pool = mysql.createPool({
 
 app.listen(port, async () => {
     console.log(`Server is running on port ${port}`)
-    fetch(process.env.Discord,{
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        content: `Server is running on port ${port}`
-      })
-    })
+    testingfetch("Server is running on port " + port)
 })
 // Middleware to acquire a connection from the pool
 function getConnection(callback) {
