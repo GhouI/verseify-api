@@ -96,6 +96,60 @@ Retrieves the content of a chapter based on the chapter ID.
 - Status Code: 200 (OK)
 - Body: Array of chapter content
 
+## POST /api/UploadChapterByBookId
+
+Uploads a chapter to a book in the database.
+
+### Request
+
+- Method: POST
+- URL: `/api/UploadChapterByBookId`
+- Headers:
+  - Content-Type: application/json
+- Body: Object containing chapter details
+
+#### Body Parameters
+
+| Parameter         | Type   | Required | Description                             |
+| ----------------- | ------ | -------- | --------------------------------------- |
+| bookid            | number | Yes      | The ID of the book to which the chapter belongs. |
+| chaptercontent    | string | Yes      | The content of the chapter.              |
+| groupName         | string | Yes      | The group to which the chapter belongs.  |
+| chapter_title     | string | Yes      | The title of the chapter.                |
+| chapter_language  | string | Yes      | The language of the chapter.             |
+
+### Response
+
+- Status Code: 200 (OK) if successful
+- Body: Result of the database insertion operation
+
+### Example
+
+#### Request
+
+```http
+POST /api/UploadChapterByBookId HTTP/1.1
+Content-Type: application/json
+
+{
+  "bookid": 123,
+  "chaptercontent": "Lorem ipsum dolor sit amet...",
+  "groupName": "Group A",
+  "chapter_title": "Chapter 1",
+  "chapter_language": "English"
+}
+```
+
+#### Response
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+[]
+```
+
+Note: The example above demonstrates the possible response but may not reflect the actual response data from the API.
 ## Error Responses
 
 The following error responses may be returned by the API endpoints:
