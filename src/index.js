@@ -1,4 +1,5 @@
 const express = require('express')
+const axios = require('axios');
 const dotenv = require('dotenv').config();
 const mysql = require('mysql');
 const cors = require('cors');
@@ -14,8 +15,16 @@ const pool = mysql.createPool({
     password: process.env.password,
     database: process.env.database_name,
   });
-app.listen(port, () => {
+
+app.listen(port, async () => {
     console.log(`Server is running on port ${port}`)
+    try{
+        await axios.post(process.env.discord_url, {
+            "content": "Verseify API is now online!"
+        })
+    }catch (e){
+        console.log(e)
+    }
 })
 // Middleware to acquire a connection from the pool
 function getConnection(callback) {
