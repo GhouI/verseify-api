@@ -21,7 +21,7 @@ app.listen(port, async () => {
     console.log(`Server is running on port ${port}`)
    
 })
-async function sendError(error){
+  sendError(error){
     const url = process.env.Discord;
     const data = {
       username: "Verseify API",
@@ -52,7 +52,7 @@ async function sendError(error){
 
 }
 // Middleware to acquire a connection from the pool
-async function getConnection(callback) {
+ function getConnection(callback) {
     pool.getConnection((err, connection) => {
       if (err) {
         console.error('Error acquiring database connection:', err);
