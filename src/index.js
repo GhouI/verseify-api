@@ -5,7 +5,10 @@ const cors = require('cors');
 const app =  express();
 
 const port = process.env.PORT || 3000;
-app.use(cors({"origin": true}));    
+app.use(cors()); // Enable CORS for all routes
+
+app.options('*', cors()); // Enable pre-flight request handling for all routes
+   
 app.use(express.json())
 // Create a database connection pool with connection limits
 const pool = mysql.createPool({
