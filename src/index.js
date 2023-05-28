@@ -67,6 +67,10 @@ app.get('/', async (req,res) =>{
     Error(process.env.Discord, "Server is running on port " + port)
 });
   app.get('/api/books', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
     const query = 'SELECT * FROM `Books`';
   
     getConnection((err, connection) => {
@@ -88,6 +92,10 @@ app.get('/', async (req,res) =>{
   });
   
   app.get('/api/getbook',  (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
     const searchQuery = req.query.search;
   
     const query = `
@@ -124,6 +132,10 @@ app.get('/', async (req,res) =>{
   });
   
   app.get('/api/GetBookByID',  (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
     const searchQuery = req.query.search;
     const query = `SELECT 
     Books.*,
