@@ -21,7 +21,7 @@ app.listen(port, async () => {
     console.log(`Server is running on port ${port}`)
    
 })
-  sendError(error){
+ function sendError(error){
     const url = process.env.Discord;
     const data = {
       username: "Verseify API",
