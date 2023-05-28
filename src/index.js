@@ -51,7 +51,7 @@ async function sendError(error){
 
 }
 // Middleware to acquire a connection from the pool
-function getConnection(callback) {
+async function getConnection(callback) {
     pool.getConnection((err, connection) => {
       if (err) {
         console.error('Error acquiring database connection:', err);
@@ -61,7 +61,7 @@ function getConnection(callback) {
       }
     });
   }
-app.get('/', (req,res) =>{
+app.get('/', async (req,res) =>{
     res.send("Hello, Welcome to Verseify API. This is Version 1.04. Sends discord webhooks error.")
     Error(process.env.Discord, "Server is running on port " + port)
 });
@@ -86,7 +86,7 @@ app.get('/', (req,res) =>{
     });
   });
   
-  app.get('/api/getbook', (req, res) => {
+  app.get('/api/getbook', async (req, res) => {
     const searchQuery = req.query.search;
   
     const query = `
@@ -122,7 +122,7 @@ app.get('/', (req,res) =>{
     });
   });
   
-  app.get('/api/GetBookByID', (req, res) => {
+  app.get('/api/GetBookByID', async (req, res) => {
     const searchQuery = req.query.search;
     const query = `SELECT 
     Books.*,
@@ -160,7 +160,7 @@ app.get('/', (req,res) =>{
       }
     });
   });
-  app.get('/api/GetBookContentByChapterID', (req, res) =>{
+  app.get('/api/GetBookContentByChapterID', async (req, res) =>{
     const searchQuery = req.query.search
     const query = `
     SELECT chapter_content FROM Chapters WHERE chapter_id = ${searchQuery};
@@ -186,7 +186,7 @@ app.get('/', (req,res) =>{
       }
     });
   })
-  app.post('/api/UploadChapterByBookId', (req, res) =>{
+  app.post('/api/UploadChapterByBookId', async (req, res) =>{
     const {book_id, chapter_title, chapter_language, chapter_content, chapter_group} = req.body;
     const query = `
     INSERT INTO Chapters (book_id, chapter_title, chapter_language, chapter_content, chapter_group) VALUES (${book_id}, '${chapter_title}', '${chapter_language}', '${chapter_content}', '${chapter_group}');
@@ -200,7 +200,7 @@ app.get('/', (req,res) =>{
     
             if (error) {
                 console.error('Error executing query:', error);
-                sendError(error)
+                 sendError(error)
                 res.status(500).json({ error: 'An internal server error occurred!', message: error });
             } else {
                 if (results.length === 0) {
@@ -215,4 +215,11 @@ app.get('/', (req,res) =>{
     );
 
   })
+app.post('/api/post', async (req,res) =>{
+  const data = req.body
+  res.json({
+    message: "Hello" + chapter_title
+  })
+
+})
 export default app;
