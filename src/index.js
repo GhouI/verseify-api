@@ -18,7 +18,7 @@ const pool = mysql.createPool({
 
 app.listen(port, async () => {
     console.log(`Server is running on port ${port}`)
-    testingfetch("Server is running on port " + port)
+    Error("Server is running on port " + port)
 })
 // Middleware to acquire a connection from the pool
 function getConnection(callback) {
@@ -32,7 +32,7 @@ function getConnection(callback) {
     });
   }
 app.get('/', (req,res) =>{
-    res.send("Hello, Welcome to Verseify API. This is Version 1.03" + process.env.Discord)
+    res.send("Hello, Welcome to Verseify API. This is Version 1.04. Sends discord webhooks error.")
 });
   app.get('/api/books', (req, res) => {
     const query = 'SELECT * FROM `Books`';
