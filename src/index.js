@@ -87,7 +87,7 @@ app.get('/', async (req,res) =>{
     });
   });
   
-  app.get('/api/getbook', async (req, res) => {
+  app.get('/api/getbook',  (req, res) => {
     const searchQuery = req.query.search;
   
     const query = `
@@ -123,7 +123,7 @@ app.get('/', async (req,res) =>{
     });
   });
   
-  app.get('/api/GetBookByID', async (req, res) => {
+  app.get('/api/GetBookByID',  (req, res) => {
     const searchQuery = req.query.search;
     const query = `SELECT 
     Books.*,
@@ -161,7 +161,7 @@ app.get('/', async (req,res) =>{
       }
     });
   });
-  app.get('/api/GetBookContentByChapterID', async (req, res) =>{
+  app.get('/api/GetBookContentByChapterID',  (req, res) =>{
     const searchQuery = req.query.search
     const query = `
     SELECT chapter_content FROM Chapters WHERE chapter_id = ${searchQuery};
