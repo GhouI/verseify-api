@@ -102,10 +102,13 @@ app.get('/api/GetBookContentByChapterID', (req, res) => {
 app.post('/api/UploadChapterByBookId', (req, res) => {
   const { book_id, chapter_title, chapter_language, chapter_content, chapter_group } = req.body;
   const query = `
-    INSERT INTO Chapters (book_id, chapter_title, chapter_language, chapter_content, chapter_group) VALUES (1, 'meow', 'roo', 'boo', 'cow');
+    INSERT INTO Chapters (chapter_id, book_id, chapter_title, chapter_language, chapter_content, chapter_group)
+    VALUES (NULL, (SELECT book_id FROM Books WHERE book_id = ${book_id}), '${chapter_title}', '${chapter_language}', '${chapter_content}', '${chapter_group}');
   `;
 
   queryDatabase(query, res);
 });
+
+
 
 export default app;
