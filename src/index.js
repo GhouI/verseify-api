@@ -32,16 +32,6 @@ const queryDatabase = (query, res) => {
     if (error) {
       console.error('Error executing query:', error);
       res.status(500).json({ error: 'An internal server error occurred' });
-      const discordURL = process.env.Discord;
-      const data = {
-        content: `An error occurred: ${error.message}`,
-      };
-  
-      fetch(discordURL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      })
     } else {
       res.status(200).json(results);
     }
