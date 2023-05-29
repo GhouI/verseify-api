@@ -39,4 +39,6 @@ The project is a RESTful API that serves as a backend for a book management syst
 - In case of an internal server error, the API responds with a 500 error and an appropriate error message.
 - When a specific book or chapter is not found, the API responds with a 404 error and an error message indicating that the requested resource could not be found.
 
-The project serves as a backend for managing books and providing access to their information and content. It can be integrated into a larger application or used independently to build book-related features or services.
+## Live Demo
+
+You can find a live demo of the project at [https://verseify-api.vercel.app/](https://verseify-api.vercel.app/). Please follow the docs on how to use it.
