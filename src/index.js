@@ -12,7 +12,7 @@ app.use(cors({ origin: true }));
 app.use(express.json());
 
 const pool = mysql.createPool({
-    connectionLimit: 100, // Adjust the limit based on your server capacity
+    connectionLimit: 100, 
     host: process.env.host,
     user: process.env.username,
     password: process.env.password,
